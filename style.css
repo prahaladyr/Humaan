@@ -60,7 +60,7 @@ header {
   }
 }
 
-header svg {
+header .logo-animated {
   position: absolute;
   width: 100px;
   height: 20px;
@@ -93,15 +93,12 @@ header .nav_menu {
   }
 }
 
-header .hamburger_container {
+.hamburger_container {
   position: fixed;
   right: 0;
-  -webkit-transition: opacity 0.2s ease-in-out;
-  transition: opacity 0.2s ease-in-out;
-  overflow-y: scroll;
 }
 
-header .hamburger_container .favicon_btn {
+.hamburger_container .favicon_btn {
   background-color: transparent;
   border: none;
   right: 0px;
@@ -110,7 +107,7 @@ header .hamburger_container .favicon_btn {
   height: inherit;
 }
 
-header .hamburger_container .toggler {
+.hamburger_container .toggler {
   position: absolute;
   top: 0;
   right: 15px;
@@ -121,8 +118,14 @@ header .hamburger_container .toggler {
   z-index: 2;
 }
 
-header .hamburger_container .hamburger_menu {
-  background-color: #10192a;
+@media screen and (min-width: 1023px) {
+  .hamburger_container {
+    display: none;
+  }
+}
+
+.hamburger_menu {
+  background-color: #633a86;
   position: fixed;
   left: 0;
   top: 0;
@@ -130,9 +133,12 @@ header .hamburger_container .hamburger_menu {
   height: 100vh;
   padding: 25px 32px;
   visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s ease-out;
+  transition: opacity 0.2s ease-out;
 }
 
-header .hamburger_container .hamburger_menu .topbar {
+.hamburger_menu .topbar {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -141,27 +147,27 @@ header .hamburger_container .hamburger_menu .topbar {
           justify-content: space-between;
 }
 
-header .hamburger_container .hamburger_menu .topbar .favicon {
+.hamburger_menu .topbar .favicon {
   width: 50px;
   height: 50px;
 }
 
-header .hamburger_container .hamburger_menu .topbar .cross {
+.hamburger_menu .topbar .cross {
   margin: 15px 20px;
   position: absolute;
   width: 40px;
   height: 40px;
-  right: 15px;
+  right: 0;
   top: 0;
 }
 
-header .hamburger_container .hamburger_menu ul {
+.hamburger_menu ul {
   text-align: left;
   padding-top: 72px;
   height: 70vh;
 }
 
-header .hamburger_container .hamburger_menu ul a {
+.hamburger_menu ul a {
   text-decoration: none;
   color: #ffffff;
   line-height: 50px;
@@ -169,13 +175,24 @@ header .hamburger_container .hamburger_menu ul a {
   font-family: maisonneue-light;
 }
 
-header .hamburger_container .hamburger_menu .contact_footer {
-  text-align: left;
-  display: -ms-grid;
-  display: grid;
+.hamburger_menu ul a:hover {
+  opacity: 0.5;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
-header .hamburger_container .hamburger_menu .contact_footer a {
+.hamburger_menu .contact_footer {
+  text-align: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.hamburger_menu .contact_footer a {
   text-decoration: none;
   color: #ffffff;
   font-weight: 10;
@@ -184,29 +201,42 @@ header .hamburger_container .hamburger_menu .contact_footer a {
   font-family: maisonneue-light;
 }
 
-header .hamburger_container .toggler:checked ~ .hamburger_menu {
+.hamburger_menu .contact_footer a svg {
+  fill: #ffffff;
+  padding: 0;
+  width: 20px;
+  margin-top: 11px;
+}
+
+.hamburger_menu .contact_footer a:hover {
+  text-decoration: underline;
+  -webkit-text-decoration-color: #73b3f3;
+          text-decoration-color: #73b3f3;
+  color: #73b3f3;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.toggler:checked ~ .hamburger_menu {
   visibility: visible;
+  opacity: 1;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 }
 
-@media screen and (min-width: 1023px) {
-  header .hamburger_container {
-    display: none;
-  }
-}
-
-header .met-image {
+.met-image {
   width: 100%;
   height: 38vh;
 }
 
 @media screen and (min-width: 1023px) {
-  header .met-image {
+  .met-image {
     height: 100%;
     width: 100%;
   }
 }
 
-header .met-image img {
+.met-image img {
   -o-object-fit: cover;
      object-fit: cover;
   top: 0;
@@ -214,7 +244,7 @@ header .met-image img {
 }
 
 @media screen and (min-width: 1023px) {
-  header .met-image img {
+  .met-image img {
     width: 100%;
     height: 100%;
   }
@@ -550,7 +580,8 @@ footer nav a {
   margin-bottom: 10px;
 }
 
-.footer-country p, .footer-country a {
+.footer-country p,
+.footer-country a {
   color: #ffffff;
   text-align: center;
   font-size: 14px;

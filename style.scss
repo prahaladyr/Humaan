@@ -1,8 +1,10 @@
-$purple: #10192a;
 $base-color: #171837;
 $black: #000000;
 $white: #ffffff;
 $darkgray: #232323;
+$violet: #10192a;
+$purple: #633a86;
+$lightblue: #73b3f3;
 
 // $breakpoint-fullwidth: 768px;
 
@@ -56,7 +58,7 @@ header {
         flex-direction: row;
     }
 
-    svg {
+    .logo-animated {
         position: absolute;
         width: 100px;
         height: 20px;
@@ -79,111 +81,133 @@ header {
             top: 10px;
         }
     }
+}
 
-    .hamburger_container {
-        position: fixed;
-        right: 0;
-        transition: opacity 0.2s ease-in-out;
-        overflow-y: scroll;
+.hamburger_container {
+    position: fixed;
+    right: 0;
 
-        .favicon_btn {
-            background-color: transparent;
-            border: none;
-            right: 0px;
-            padding: 17px 23px;
-            width: 84px;
-            height: inherit;
-        }
-        .toggler {
-            position: absolute;
-            top: 0;
-            right: 15px;
-            cursor: pointer;
+    .favicon_btn {
+        background-color: transparent;
+        border: none;
+        right: 0px;
+        padding: 17px 23px;
+        width: 84px;
+        height: inherit;
+    }
+    .toggler {
+        position: absolute;
+        top: 0;
+        right: 15px;
+        cursor: pointer;
+        width: 50px;
+        height: 70px;
+        opacity: 0%;
+        z-index: 2;
+    }
+
+    @media screen and (min-width: 1023px) {
+        display: none;
+    }
+}
+
+.hamburger_menu {
+    background-color: $purple;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 25px 32px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+
+    .topbar {
+        display: flex;
+        justify-content: space-between;
+
+        .favicon {
             width: 50px;
-            height: 70px;
-            opacity: 0%;
-            z-index: 2;
+            height: 50px;
         }
-
-        .hamburger_menu {
-            background-color: $purple;
-            position: fixed;
-            left: 0;
+        .cross {
+            margin: 15px 20px;
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            right: 0;
             top: 0;
-            width: 100vw;
-            height: 100vh;
-            padding: 25px 32px;
-            visibility: hidden;
-
-            .topbar {
-                display: flex;
-                justify-content: space-between;
-
-                .favicon {
-                    width: 50px;
-                    height: 50px;
-                }
-                .cross {
-                    margin: 15px 20px;
-                    position: absolute;
-                    width: 40px;
-                    height: 40px;
-                    right: 15px;
-                    top: 0;
-                }
-            }
-            ul {
-                text-align: left;
-                padding-top: 72px;
-                height: 70vh;
-                a {
-                    text-decoration: none;
-                    color: $white;
-                    line-height: 50px;
-                    font-size: 24px;
-                    font-family: maisonneue-light;
-                }
-            }
-            .contact_footer {
-                text-align: left;
-                display: grid;
-                a {
-                    text-decoration: none;
-                    color: $white;
-                    font-weight: 10;
-                    line-height: 50px;
-                    font-size: 20px;
-                    font-family: maisonneue-light;
-                }
-            }
-        }
-        .toggler:checked ~ .hamburger_menu {
-            visibility: visible;
-        }
-
-        @media screen and (min-width: 1023px) {
-            display: none;
         }
     }
-    .met-image {
+    ul {
+        text-align: left;
+        padding-top: 72px;
+        height: 70vh;
+        a {
+            text-decoration: none;
+            color: $white;
+            line-height: 50px;
+            font-size: 24px;
+            font-family: maisonneue-light;
+
+            &:hover {
+                opacity: 0.5;
+                transition: all 0.2s ease;
+            }
+        }
+    }
+    .contact_footer {
+        text-align: left;
+        display: flex;
+		flex-direction: column;
+        a {
+            text-decoration: none;
+            color: $white;
+            font-weight: 10;
+            line-height: 50px;
+            font-size: 20px;
+            font-family: maisonneue-light;
+
+            svg {
+				fill: $white;
+				padding:0;
+                width: 20px;
+                margin-top: 11px;
+            }
+        }
+        a:hover {
+            text-decoration: underline;
+            text-decoration-color: $lightblue;
+            color: $lightblue;
+            transition: all 0.2s ease-in-out;
+        }
+    }
+}
+.toggler:checked ~ .hamburger_menu {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.met-image {
+    width: 100%;
+    height: 38vh;
+
+    @media screen and (min-width: 1023px) {
+        height: 100%;
         width: 100%;
-        height: 38vh;
+    }
+    img {
+        // width: 100%;
+        object-fit: cover;
+        // height: 100%;
+        top: 0;
+        left: 0;
 
         @media screen and (min-width: 1023px) {
-            height: 100%;
             width: 100%;
-        }
-        img {
-            // width: 100%;
-            object-fit: cover;
-            // height: 100%;
-            top: 0;
-            left: 0;
-
-            @media screen and (min-width: 1023px) {
-                width: 100%;
-                height: 100%;
-            }
+            height: 100%;
         }
     }
 }
@@ -332,7 +356,7 @@ ul {
 }
 
 .mideast-blockquote {
-    background-color: $purple;
+    background-color: $violet;
 
     blockquote {
         color: $white;
@@ -355,7 +379,7 @@ ul {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: $purple;
+    background-color: $violet;
     color: $white;
     min-height: 100vh;
 
@@ -384,7 +408,7 @@ ul {
 footer {
     background-color: $white;
     color: $black;
-	padding: 10px 0 0;
+    padding: 10px 0 0;
 
     li {
         padding: 10px 0;
@@ -428,23 +452,24 @@ footer {
 
 .footer-country {
     background-color: $darkgray;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 30px;
-    
-	svg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+
+    svg {
         width: 30px;
-		margin-bottom: 10px;
+        margin-bottom: 10px;
     }
 
-	p, a{
-		color: $white;
-		text-align: center;
-		font-size: 14px;
-		letter-spacing: 0;
-		font-weight: 500;
-	}
+    p,
+    a {
+        color: $white;
+        text-align: center;
+        font-size: 14px;
+        letter-spacing: 0;
+        font-weight: 500;
+    }
 }
 
 main {
