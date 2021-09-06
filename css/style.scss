@@ -5,26 +5,27 @@ $darkgray: #232323;
 $violet: #10192a;
 $purple: #633a86;
 $lightblue: #73b3f3;
-
+$lightgray: #abb2b9;
+$skyblue: #99daf2;
 // $breakpoint-fullwidth: 768px;
 
 @font-face {
     font-family: "maisonneue-book";
-    src: url("/fonts/maisonneue-book-webfont.woff2");
+    src: url("fonts/maisonneue-book-webfont.woff2");
 }
 @font-face {
     font-family: "maisonneue-demi";
-    src: url("/fonts/maisonneue-demi-webfont.woff2");
+    src: url("fonts/maisonneue-demi-webfont.woff2");
 }
 
 @font-face {
     // font-weight: 200;
     font-family: "maisonneue-light";
-    src: url("/fonts/maisonneue-light-webfont.woff2");
+    src: url("fonts/maisonneue-light-webfont.woff2");
 }
 @font-face {
     font-family: "maisonneue-medium";
-    src: url("/fonts/maisonneue-medium-webfont.woff2");
+    src: url("fonts/maisonneue-medium-webfont.woff2");
 }
 
 * {
@@ -43,6 +44,50 @@ ul {
 
     li {
         padding: 0;
+    }
+}
+
+.hover-bar {
+    display: flex;
+    flex-direction: row-reverse;
+    position: fixed;
+    width: 100%;
+    height: 70px;
+    background-color: $skyblue;
+    opacity: 0;
+
+    .logo-animated {
+        fill: $black;
+        width: 120px;
+        height: 20px;
+        margin: 0 2em;
+        padding: 0;
+    }
+    ul {
+        display: flex;
+        flex-direction: row;
+        align-self: center;
+        padding-right: 2em;
+    }
+    a {
+        text-decoration: none;
+        color: $black;
+        padding-right: 3em;
+    }
+}
+
+.hover-select {
+    position: fixed;
+    right: 0;
+    top: 0;
+    margin: 35px;
+    cursor: pointer;
+    &:hover + .hover-bar {
+        opacity: 1;
+    }
+
+    img {
+        width: 65px;
     }
 }
 
@@ -66,6 +111,13 @@ header {
         top: 0;
         left: 0;
         fill: $white;
+
+        @media screen and (min-width: 1023px) {
+            width: 125px;
+            height: 20px;
+            top: 26px;
+            left: 40px;
+        }
     }
 
     .nav_menu {
@@ -74,11 +126,27 @@ header {
         @media screen and (min-width: 1023px) {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
             position: absolute;
+            top: 51px;
+            right: 30px;
+        }
+        li {
+            list-style: none;
+            margin-right: 41px;
+        }
+        a {
+            justify-content: space-between;
+            letter-spacing: 0.75px;
+            text-decoration: none;
+            color: $white;
+            font-weight: 400;
             text-align: center;
-            right: 0;
-            top: 10px;
+            font-family: maisonneue-book;
+
+            &:hover {
+                opacity: 50%;
+                transition: all 0.2s ease;
+            }
         }
     }
 }
@@ -130,6 +198,12 @@ header {
         .favicon {
             width: 50px;
             height: 50px;
+            cursor: pointer;
+
+            &:hover {
+                color: $white;
+                transition: all 0.2s ease-in;
+            }
         }
         .cross {
             margin: 15px 20px;
@@ -143,13 +217,13 @@ header {
     ul {
         text-align: left;
         padding-top: 72px;
-        height: 70vh;
+        height: 75vh;
         a {
             text-decoration: none;
             color: $white;
             line-height: 50px;
             font-size: 24px;
-            font-family: maisonneue-light;
+            font-family: maisonneue-book;
 
             &:hover {
                 opacity: 0.5;
@@ -160,20 +234,20 @@ header {
     .contact_footer {
         text-align: left;
         display: flex;
-		flex-direction: column;
+        flex-direction: column;
         a {
             text-decoration: none;
             color: $white;
-            font-weight: 10;
+            opacity: 0.75;
+            font-weight: 100;
             line-height: 50px;
             font-size: 20px;
             font-family: maisonneue-light;
 
             svg {
-				fill: $white;
-				padding:0;
-                width: 20px;
-                margin-top: 11px;
+                fill: $lightblue;
+                padding: 0;
+                width: 19px;
             }
         }
         a:hover {
@@ -195,13 +269,11 @@ header {
     height: 38vh;
 
     @media screen and (min-width: 1023px) {
-        height: 100%;
+        height: 100vh;
         width: 100%;
     }
     img {
-        // width: 100%;
         object-fit: cover;
-        // height: 100%;
         top: 0;
         left: 0;
 
@@ -229,15 +301,34 @@ ul {
     display: flex;
     flex-direction: column-reverse;
 
+    @media screen and (min-width: 1023px) {
+        display: flex;
+        position: absolute;
+        flex-direction: column;
+        top: 72vh;
+        left: 9vw;
+        background-color: transparent;
+    }
+
     span {
         padding-top: 17px;
         font-size: 16px;
-        color: lighten($color: #ffffff, $amount: 90%);
+        color: $lightgray;
+
+        @media screen and (min-width: 1023px) {
+            font-size: 20px;
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
     }
     h1 {
         font-size: 25px;
         letter-spacing: 0.5px;
         font-family: maisonneue-demi;
+
+        @media screen and (min-width: 1023px) {
+            font-size: 54px;
+        }
     }
 }
 
@@ -246,14 +337,33 @@ ul {
     padding: 10px 30px;
     background-color: $base-color;
 
+    @media screen and (min-width: 1023px) {
+        display: flex;
+        flex-direction: row;
+    }
+
     p {
         font-size: 22px;
         line-height: 40px;
+
+        @media screen and (min-width: 1023px) {
+            width: 63%;
+            align-self: center;
+            font-size: 33px;
+            line-height: 53px;
+            margin: 170px;
+        }
     }
     ul {
         margin: 26px 0 90px;
         text-decoration: none;
         line-height: 40px;
+
+        @media screen and (min-width: 1023px) {
+            width: 37%;
+            align-self: center;
+            font-size: 18px;
+        }
     }
 }
 
@@ -262,12 +372,22 @@ ul {
     display: flex;
     flex-direction: column-reverse;
 
+    @media screen and (min-width: 1023px) {
+        display: flex;
+        flex-direction: row;
+        padding: 90px 0;
+    }
+
     h2 {
         color: $black;
         background-color: $white;
         font-size: 27px;
         padding: 29px 30px;
         letter-spacing: 1px;
+
+        @media screen and (min-width: 1023px) {
+            font-size: 35px;
+        }
     }
     p {
         background-color: $white;
@@ -275,6 +395,26 @@ ul {
         line-height: 32px;
         font-size: 20px;
         padding: 5px 30px 70px;
+
+        @media screen and (min-width: 1023px) {
+            font-size: 23px;
+            line-height: 38px;
+            // text-align: center;
+            padding-right: 0;
+        }
+    }
+
+    div {
+        @media screen and (min-width: 1023px) {
+            width: 40%;
+            align-self: center;
+            margin: 170px;
+        }
+    }
+    figure {
+        @media screen and (min-width: 1023px) {
+            width: 70%;
+        }
     }
 }
 
@@ -283,12 +423,27 @@ ul {
     display: flex;
     flex-direction: column-reverse;
 
+    div {
+        @media screen and (min-width: 1023px) {
+            display: flex;
+            margin-bottom: 80px;
+        }
+    }
+
     h2 {
         color: $black;
         background-color: $white;
         font-size: 27px;
         padding: 0 30px;
         letter-spacing: 1.2px;
+
+        @media screen and (min-width: 1023px) {
+            width: 40%;
+            text-align: center;
+            font-size: 35px;
+            padding: 0;
+            margin: 0px;
+        }
     }
     p {
         background-color: $white;
@@ -296,6 +451,13 @@ ul {
         line-height: 32px;
         font-size: 20px;
         padding: 40px 30px 70px;
+
+        @media screen and (min-width: 1023px) {
+            width: 45%;
+            font-size: 23px;
+            line-height: 38px;
+            padding: 0 40px;
+        }
     }
 }
 
@@ -307,6 +469,8 @@ ul {
 
         @media screen and (min-width: 1023px) {
             flex-direction: row;
+            padding: 0;
+            margin: 0;
         }
 
         &:nth-child(even) {
@@ -315,9 +479,15 @@ ul {
             }
         }
     }
-
     div {
         padding: 30px;
+        @media screen and (min-width: 1023px) {
+            align-self: center;
+            width: 50%;
+            padding: 150px;
+            padding-right: 100px;
+            padding-left: 220px;
+        }
     }
     h2 {
         color: $black;
@@ -325,6 +495,10 @@ ul {
         font-size: 27px;
         padding-bottom: 22px;
         letter-spacing: 1.5px;
+
+        @media screen and (min-width: 1023px) {
+            font-size: 35px;
+        }
     }
     p {
         background-color: $white;
@@ -332,6 +506,18 @@ ul {
         line-height: 28px;
         font-size: 19.5px;
         padding: 9px 0 20px;
+
+        @media screen and (min-width: 1023px) {
+            font-size: 23px;
+            line-height: 38px;
+            // padding: 0 40px;
+        }
+    }
+
+    figure {
+        @media screen and (min-width: 1023px) {
+            width: 50%;
+        }
     }
 }
 
@@ -339,12 +525,22 @@ ul {
     padding: 30px;
     background-color: $white;
 
+    @media screen and (min-width: 1023px) {
+        align-self: center;
+        padding: 12em 29em;
+    }
+
     h2 {
         color: $black;
         background-color: $white;
         font-size: 27px;
         padding-bottom: 22px;
         letter-spacing: 1.5px;
+
+        @media screen and (min-width: 1023px) {
+            font-size: 35px;
+            letter-spacing: 0.5px;
+        }
     }
     p {
         background-color: $white;
@@ -352,6 +548,12 @@ ul {
         line-height: 30px;
         font-size: 19.5px;
         padding: 9px 0 20px;
+
+        @media screen and (min-width: 1023px) {
+            font-size: 24px;
+            line-height: 40px;
+            padding-top: 20px;
+        }
     }
 }
 
@@ -363,6 +565,13 @@ ul {
         padding: 20px 30px;
         line-height: 25px;
         font-size: 15px;
+
+        @media screen and (min-width: 1023px) {
+            font-size: 30px;
+            align-self: center;
+            padding: 1em 13em;
+            line-height: 50px;
+        }
     }
 
     div {
@@ -371,6 +580,12 @@ ul {
         flex-direction: column;
         font-size: 14px;
         line-height: 25px;
+
+        @media screen and (min-width: 1023px) {
+            padding: 1em 0;
+            font-size: 20px;
+            line-height: 30px;
+        }
     }
 }
 
@@ -383,15 +598,32 @@ ul {
     color: $white;
     min-height: 100vh;
 
+    @media screen and (min-width: 1023px) {
+        padding: 20em 35em;
+        min-height: 70vh;
+    }
+
     h2 {
         font-size: 25px;
         margin: 15px;
+
+        @media screen and (min-width: 1023px) {
+            font-size: 35px;
+            margin: 25px;
+        }
     }
+
     h5 {
         margin: 15px;
         font-size: 18px;
         text-align: center;
         line-height: 30px;
+
+        @media screen and (min-width: 1023px) {
+            font-size: 23px;
+            font-weight: lighter;
+            line-height: 35px;
+        }
     }
 
     div {
@@ -399,9 +631,20 @@ ul {
         height: 50%;
         display: flex;
         flex-direction: column;
+        @media screen and (min-width: 1023px) {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
     }
     img {
         margin-top: 20px;
+
+        @media screen and (min-width: 1023px) {
+            width: 12em;
+            height: 4em;
+            margin: 20px;
+        }
     }
 }
 
@@ -409,12 +652,22 @@ footer {
     background-color: $white;
     color: $black;
     padding: 10px 0 0;
-
+    ul {
+        @media screen and (min-width: 1023px) {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+    }
     li {
         padding: 10px 0;
+
         h2 {
             font-size: 15px;
             margin: 18px 30px;
+            @media screen and (min-width: 1023px) {
+                font-size: 20px;
+            }
         }
         a {
             text-decoration: none;
@@ -424,11 +677,20 @@ footer {
             font-size: 21px;
             color: $black;
             margin: 0 30px;
+
+            @media screen and (min-width: 1023px) {
+                font-size: 25px;
+                line-height: 40px;
+            }
         }
         svg {
             width: 20px;
             height: 3vh;
             margin-right: 10px;
+
+            @media screen and (min-width: 1023px) {
+                margin-top: 6px;
+            }
         }
     }
 
@@ -437,15 +699,29 @@ footer {
         justify-content: space-between;
         margin: 50px 30px;
 
+        @media screen and (min-width: 1023px) {
+            margin: 50px 10em;
+        }
+
         div {
             display: flex;
             justify-content: center;
+
+            @media screen and (min-width: 1023px) {
+                justify-content: space-between;
+            }
         }
         a {
             font-size: 11px;
             margin: 0 2px;
             text-decoration: none;
             color: $black;
+
+            @media screen and (min-width: 1023px) {
+                font-size: 14px;
+                line-height: 40px;
+                margin: 0 10px;
+            }
         }
     }
 }
